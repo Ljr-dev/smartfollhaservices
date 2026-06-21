@@ -1,0 +1,19 @@
+<%- include('../partials/admin-header') %>
+<section class="admin-section">
+  <h1>Páginas</h1>
+  <table>
+    <thead><tr><th>Slug</th><th>Título</th><th>Ativa</th><th>Atualizada</th><th></th></tr></thead>
+    <tbody>
+      <% pages.forEach(function(page) { %>
+        <tr>
+          <td><%= page.slug %></td>
+          <td><%= page.title %></td>
+          <td><%= page.active ? 'Sim' : 'Não' %></td>
+          <td><%= page.updated_at ? page.updated_at.toLocaleString('pt-BR') : '-' %></td>
+          <td><a href="/admin/paginas/<%= page.id %>/editar">Editar</a></td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</section>
+<%- include('../partials/admin-footer') %>

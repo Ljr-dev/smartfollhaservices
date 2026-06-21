@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/css/admin.css">
+</head>
+<body>
+  <div class="admin-shell">
+    <aside class="admin-sidebar">
+      <a class="admin-brand" href="/admin">Smart Folha</a>
+      <nav>
+        <a href="/admin" class="<%= currentPath === '/admin' ? 'active' : '' %>">Dashboard</a>
+        <a href="/admin/leads" class="<%= currentPath.startsWith('/admin/leads') ? 'active' : '' %>">Leads</a>
+        <a href="/admin/calculadoras" class="<%= currentPath.startsWith('/admin/calculadoras') ? 'active' : '' %>">Calculadoras</a>
+        <a href="/admin/formulas" class="<%= currentPath.startsWith('/admin/formulas') ? 'active' : '' %>">Fórmulas</a>
+        <a href="/admin/paginas" class="<%= currentPath.startsWith('/admin/paginas') ? 'active' : '' %>">Páginas</a>
+        <a href="/admin/simulacoes" class="<%= currentPath.startsWith('/admin/simulacoes') ? 'active' : '' %>">Simulações</a>
+        <a href="/admin/configuracoes" class="<%= currentPath.startsWith('/admin/configuracoes') ? 'active' : '' %>">Configurações</a>
+      </nav>
+      <form method="post" action="/logout">
+        <button class="ghost full" type="submit">Sair</button>
+      </form>
+    </aside>
+    <main class="admin-main">
+      <header class="admin-topbar">
+        <div>
+          <span>Painel administrativo</span>
+          <strong><%= adminUser ? adminUser.name : '' %></strong>
+        </div>
+        <a href="/" target="_blank" rel="noopener">Ver site</a>
+      </header>

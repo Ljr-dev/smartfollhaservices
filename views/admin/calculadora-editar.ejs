@@ -1,0 +1,65 @@
+<%- include('../partials/admin-header') %>
+<section class="admin-section narrow">
+  <h1><%= isNew ? 'Nova calculadora' : 'Editar calculadora' %></h1>
+  <form method="post" action="<%= isNew ? '/admin/calculadoras/nova' : '/admin/calculadoras/' + calculator.id + '/editar' %>">
+    <label>Tipo interno<input name="calculator_type" value="<%= calculator.calculator_type %>" placeholder="rescisao" required></label>
+    <label>Slug da URL<input name="slug" value="<%= calculator.slug %>" placeholder="rescisao" required></label>
+    <label>Titulo<input name="title" value="<%= calculator.title %>" required></label>
+    <label>Descricao<textarea name="description" rows="4"><%= calculator.description || '' %></textarea></label>
+    <label>Texto do botao<input name="cta_text" value="<%= calculator.cta_text || 'Calcular' %>"></label>
+    <label>Ordem<input type="number" name="sort_order" value="<%= calculator.sort_order || 0 %>"></label>
+    <label>Ativa
+      <select name="active">
+        <option value="1" <%= calculator.active ? 'selected' : '' %>>Sim</option>
+        <option value="0" <%= !calculator.active ? 'selected' : '' %>>Nao</option>
+      </select>
+    </label>
+    <button type="submit">Salvar</button>
+  </form>
+</section>
+
+<% if (!isNew) { %>
+  <section class="admin-section">
+    <div class="section-actions">
+      <h2>Campos do formulario</h2>
+      <a class="button-link" href="/admin/calculadoras/<%= calculator.id %>/campos/novo">Novo campo</a>
+    </div>
+    <table>
+      <thead><tr><th>Campo</th><th>Nome interno</th><th>Tipo</th><th>Obrigatorio</th><th>Ativo</th><th></th></tr></thead>
+      <tbody>
+        <% fields.forEach(function(field) { %>
+          <tr>
+            <td><%= field.label %></td>
+            <td><%= field.field_name %></td>
+            <td><%= field.input_type %></td>
+            <td><%= field.required ? 'Sim' : 'Nao' %></td>
+            <td><%= field.active ? 'Sim' : 'Nao' %></td>
+            <td><a href="/admin/calculadoras/<%= calculator.id %>/campos/<%= field.id %>/editar">Editar</a></td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="admin-section">
+    <div class="section-actions">
+      <h2>Calculos de resultado</h2>
+      <a class="button-link" href="/admin/formulas/nova?calculator_type=<%= calculator.calculator_type %>">Nova formula</a>
+    </div>
+    <table>
+      <thead><tr><th>Resultado</th><th>Nome interno</th><th>Formula</th><th>Ativa</th><th></th></tr></thead>
+      <tbody>
+        <% formulas.forEach(function(formula) { %>
+          <tr>
+            <td><%= formula.label %></td>
+            <td><%= formula.field_name %></td>
+            <td><code><%= formula.formula_expression %></code></td>
+            <td><%= formula.active ? 'Sim' : 'Nao' %></td>
+            <td><a href="/admin/formulas/<%= formula.id %>/editar">Editar</a></td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </section>
+<% } %>
+<%- include('../partials/admin-footer') %>

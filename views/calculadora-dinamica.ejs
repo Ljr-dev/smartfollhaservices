@@ -1,0 +1,42 @@
+<%- include('partials/header') %>
+<section class="calculator-page">
+  <div class="calc-intro">
+    <h1><%= page?.heading || calculator.title %></h1>
+    <p><%= page?.content || calculator.description %></p>
+    <%- include('partials/calculator-nav') %>
+  </div>
+  <form class="calculator-form" data-calculator="<%= calculator.calculator_type %>" data-endpoint="/api/calcular/<%= calculator.calculator_type %>">
+    <% fields.forEach(function(field) { %>
+      <% if (field.input_type === 'checkbox') { %>
+        <label class="check-row">
+          <input type="checkbox" name="<%= field.field_name %>" value="1" <%= field.default_value === '1' ? 'checked' : '' %>>
+          <span><%= field.label %></span>
+        </label>
+      <% } else { %>
+        <label><%= field.label %>
+          <% if (field.input_type === 'select') { %>
+            <select name="<%= field.field_name %>" <%= field.required ? 'required' : '' %>>
+              <% field.options.forEach(function(option) { %>
+                <option value="<%= option.value %>" <%= field.default_value === option.value ? 'selected' : '' %>><%= option.label %></option>
+              <% }) %>
+            </select>
+          <% } else { %>
+            <input
+              type="<%= field.input_type %>"
+              name="<%= field.field_name %>"
+              value="<%= field.default_value || '' %>"
+              placeholder="<%= field.placeholder || '' %>"
+              <%= field.required ? 'required' : '' %>
+              <%= field.min_value ? 'min="' + field.min_value + '"' : '' %>
+              <%= field.max_value ? 'max="' + field.max_value + '"' : '' %>
+              <%= field.step_value ? 'step="' + field.step_value + '"' : '' %>>
+          <% } %>
+          <% if (field.help_text) { %><small><%= field.help_text %></small><% } %>
+        </label>
+      <% } %>
+    <% }) %>
+    <button class="btn" type="submit"><%= calculator.cta_text || 'Calcular' %></button>
+  </form>
+  <%- include('partials/calculator-result', { calculatorType: calculator.calculator_type }) %>
+</section>
+<%- include('partials/footer') %>

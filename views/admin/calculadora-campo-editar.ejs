@@ -1,0 +1,40 @@
+<%- include('../partials/admin-header') %>
+<section class="admin-section narrow">
+  <h1><%= isNew ? 'Novo campo' : 'Editar campo' %></h1>
+  <p><strong><%= calculator.title %></strong></p>
+  <form method="post" action="<%= isNew ? '/admin/calculadoras/' + calculator.id + '/campos/novo' : '/admin/calculadoras/' + calculator.id + '/campos/' + field.id + '/editar' %>">
+    <label>Nome interno<input name="field_name" value="<%= field.field_name %>" placeholder="salario_bruto" required></label>
+    <label>Rotulo<input name="label" value="<%= field.label %>" required></label>
+    <label>Tipo
+      <select name="input_type">
+        <% ['number', 'text', 'date', 'select', 'checkbox'].forEach(function(type) { %>
+          <option value="<%= type %>" <%= field.input_type === type ? 'selected' : '' %>><%= type %></option>
+        <% }) %>
+      </select>
+    </label>
+    <label>Obrigatorio
+      <select name="required">
+        <option value="1" <%= field.required ? 'selected' : '' %>>Sim</option>
+        <option value="0" <%= !field.required ? 'selected' : '' %>>Nao</option>
+      </select>
+    </label>
+    <label>Placeholder<input name="placeholder" value="<%= field.placeholder || '' %>"></label>
+    <label>Valor padrao<input name="default_value" value="<%= field.default_value || '' %>"></label>
+    <div class="form-grid">
+      <label>Minimo<input name="min_value" value="<%= field.min_value || '' %>"></label>
+      <label>Maximo<input name="max_value" value="<%= field.max_value || '' %>"></label>
+      <label>Passo<input name="step_value" value="<%= field.step_value || '' %>"></label>
+    </div>
+    <label>Opcoes do select<textarea name="options_text" rows="6" placeholder="valor|Rotulo exibido"><%= field.options_text || '' %></textarea></label>
+    <label>Ajuda<textarea name="help_text" rows="3"><%= field.help_text || '' %></textarea></label>
+    <label>Ordem<input type="number" name="sort_order" value="<%= field.sort_order || 0 %>"></label>
+    <label>Ativo
+      <select name="active">
+        <option value="1" <%= field.active ? 'selected' : '' %>>Sim</option>
+        <option value="0" <%= !field.active ? 'selected' : '' %>>Nao</option>
+      </select>
+    </label>
+    <button type="submit">Salvar</button>
+  </form>
+</section>
+<%- include('../partials/admin-footer') %>

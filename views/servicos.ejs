@@ -1,0 +1,26 @@
+<%- include('partials/header') %>
+
+<section class="page-hero">
+  <p class="eyebrow">Serviços</p>
+  <h1><%= page?.heading || 'Serviços de folha de pagamento e Departamento Pessoal' %></h1>
+  <p><%= page?.content || 'Apoio consultivo para empresas que precisam de segurança em folha, eSocial, férias, rescisões e processos de DP.' %></p>
+</section>
+
+<section class="section">
+  <div class="service-grid">
+    <% services.forEach(function(service) { %>
+      <article class="card">
+        <h2><%= service.title %></h2>
+        <p><%= service.description %></p>
+        <% if (service.price_from) { %><span class="price">A partir de <%= service.price_from %></span><% } %>
+      </article>
+    <% }) %>
+  </div>
+</section>
+
+<section class="cta-row">
+  <h2>Vamos revisar sua rotina de DP?</h2>
+  <a class="btn" href="/contato"><%= page?.cta_text || 'Solicitar diagnóstico gratuito' %></a>
+</section>
+
+<%- include('partials/footer') %>

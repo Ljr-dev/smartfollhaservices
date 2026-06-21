@@ -1,0 +1,16 @@
+<%- include('partials/header') %>
+<section class="calculator-page">
+  <div class="calc-intro">
+    <h1><%= page?.heading || 'Calculadora de 13º salário proporcional' %></h1>
+    <p><%= page?.content || 'Simule o valor proporcional do 13º salário e estimativas de primeira e segunda parcela.' %></p>
+    <%- include('partials/calculator-nav') %>
+  </div>
+  <form class="calculator-form" data-calculator="decimo-terceiro" data-endpoint="/api/calcular/decimo-terceiro">
+    <label>Salário bruto<input type="number" step="0.01" name="salario_bruto" required></label>
+    <label>Meses trabalhados no ano<input type="number" min="0" max="12" name="meses_trabalhados" required></label>
+    <label>Média de adicionais<input type="number" step="0.01" name="media_adicionais" value="0"></label>
+    <button class="btn" type="submit">Calcular</button>
+  </form>
+  <%- include('partials/calculator-result', { calculatorType: 'decimo-terceiro' }) %>
+</section>
+<%- include('partials/footer') %>

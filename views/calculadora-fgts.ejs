@@ -1,0 +1,16 @@
+<%- include('partials/header') %>
+<section class="calculator-page">
+  <div class="calc-intro">
+    <h1><%= page?.heading || 'Calculadora de FGTS' %></h1>
+    <p><%= page?.content || 'Simule depósito mensal, total estimado de FGTS e multa de 40%.' %></p>
+    <%- include('partials/calculator-nav') %>
+  </div>
+  <form class="calculator-form" data-calculator="fgts" data-endpoint="/api/calcular/fgts">
+    <label>Salário bruto<input type="number" step="0.01" name="salario_bruto" required></label>
+    <label>Meses trabalhados<input type="number" min="0" name="meses_trabalhados" required></label>
+    <label>Valor já depositado, opcional<input type="number" step="0.01" name="valor_depositado"></label>
+    <button class="btn" type="submit">Calcular</button>
+  </form>
+  <%- include('partials/calculator-result', { calculatorType: 'fgts' }) %>
+</section>
+<%- include('partials/footer') %>

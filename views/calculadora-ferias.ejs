@@ -1,0 +1,17 @@
+<%- include('partials/header') %>
+<section class="calculator-page">
+  <div class="calc-intro">
+    <h1><%= page?.heading || 'Calculadora de férias trabalhistas' %></h1>
+    <p><%= page?.content || 'Simule valor de férias, 1/3 constitucional e total bruto estimado.' %></p>
+    <%- include('partials/calculator-nav') %>
+  </div>
+  <form class="calculator-form" data-calculator="ferias" data-endpoint="/api/calcular/ferias">
+    <label>Salário bruto<input type="number" step="0.01" name="salario_bruto" required></label>
+    <label>Meses trabalhados no período aquisitivo<input type="number" min="0" max="12" name="meses_trabalhados" required></label>
+    <label>Dias de férias<input type="number" min="1" max="30" name="dias_ferias" required></label>
+    <label>Média de adicionais<input type="number" step="0.01" name="media_adicionais" value="0"></label>
+    <button class="btn" type="submit">Calcular</button>
+  </form>
+  <%- include('partials/calculator-result', { calculatorType: 'ferias' }) %>
+</section>
+<%- include('partials/footer') %>

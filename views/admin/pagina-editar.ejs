@@ -1,0 +1,20 @@
+<%- include('../partials/admin-header') %>
+<section class="admin-section narrow">
+  <h1>Editar página</h1>
+  <form method="post">
+    <label>Slug<input value="<%= page.slug %>" disabled></label>
+    <label>Título<input name="title" value="<%= page.title %>" required></label>
+    <label>Meta description<textarea name="meta_description" required><%= page.meta_description %></textarea></label>
+    <label>Heading<input name="heading" value="<%= page.heading %>" required></label>
+    <label>Conteúdo<textarea name="content" rows="8"><%= page.content %></textarea></label>
+    <label>CTA<input name="cta_text" value="<%= page.cta_text %>"></label>
+    <label>Ativa
+      <select name="active">
+        <option value="1" <%= page.active ? 'selected' : '' %>>Sim</option>
+        <option value="0" <%= !page.active ? 'selected' : '' %>>Não</option>
+      </select>
+    </label>
+    <button type="submit">Salvar</button>
+  </form>
+</section>
+<%- include('../partials/admin-footer') %>

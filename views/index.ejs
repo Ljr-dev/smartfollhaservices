@@ -1,0 +1,73 @@
+<%- include('partials/header') %>
+
+<section class="hero">
+  <div class="hero-content">
+    <p class="eyebrow">Departamento Pessoal, folha e eSocial</p>
+    <h1><%= page?.heading || 'Folha de pagamento sem complicação para sua empresa' %></h1>
+    <p>Consultoria especializada em Departamento Pessoal, eSocial, rescisões, férias e folha de pagamento.</p>
+    <div class="hero-actions">
+      <a class="btn" href="/contato">Solicitar diagnóstico gratuito</a>
+      <a class="btn secondary" href="/calculadora-rescisao">Usar calculadoras</a>
+    </div>
+  </div>
+</section>
+
+<% if (typeof errorMessage !== 'undefined') { %>
+  <section class="section"><p class="alert"><%= errorMessage %></p></section>
+<% } %>
+
+<section class="section">
+  <div class="section-heading">
+    <p class="eyebrow">Serviços</p>
+    <h2>Rotina trabalhista com método, conferência e clareza</h2>
+  </div>
+  <div class="service-grid">
+    <% services.forEach(function(service) { %>
+      <article class="card">
+        <h3><%= service.title %></h3>
+        <p><%= service.description %></p>
+      </article>
+    <% }) %>
+  </div>
+</section>
+
+<section class="authority">
+  <div>
+    <p class="eyebrow">Experiência</p>
+    <h2>Mais de 10 anos de experiência em Departamento Pessoal e Sistema Domínio</h2>
+    <p>Atendimento voltado para empresas que precisam revisar cálculos, organizar processos de DP e reduzir riscos em rotinas de folha.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-heading">
+    <p class="eyebrow">Calculadoras gratuitas</p>
+    <h2>Simulações rápidas para orientar decisões</h2>
+  </div>
+  <div class="calculator-links">
+    <a href="/calculadora-rescisao">Rescisão</a>
+    <a href="/calculadora-ferias">Férias</a>
+    <a href="/calculadora-decimo-terceiro">13º salário</a>
+    <a href="/calculadora-hora-extra">Hora extra</a>
+    <a href="/calculadora-fgts">FGTS</a>
+  </div>
+</section>
+
+<section class="contact-band">
+  <div>
+    <h2>Precisa validar um cálculo ou organizar sua folha?</h2>
+    <p>Envie os dados principais e retornaremos com uma orientação inicial.</p>
+  </div>
+  <form class="contact-form" method="post" action="/contato">
+    <input type="hidden" name="source_page" value="inicio">
+    <label>Nome<input name="name" required></label>
+    <label>E-mail<input type="email" name="email" required></label>
+    <label>Telefone<input name="phone" required></label>
+    <label>Empresa<input name="company"></label>
+    <label>Interesse<input name="service_interest" value="Diagnóstico gratuito"></label>
+    <label>Mensagem<textarea name="message" required></textarea></label>
+    <button class="btn" type="submit">Enviar contato</button>
+  </form>
+</section>
+
+<%- include('partials/footer') %>

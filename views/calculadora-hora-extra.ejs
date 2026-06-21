@@ -1,0 +1,23 @@
+<%- include('partials/header') %>
+<section class="calculator-page">
+  <div class="calc-intro">
+    <h1><%= page?.heading || 'Calculadora de hora extra' %></h1>
+    <p><%= page?.content || 'Simule valor da hora normal, valor da hora extra e total estimado de horas extras.' %></p>
+    <%- include('partials/calculator-nav') %>
+  </div>
+  <form class="calculator-form" data-calculator="hora-extra" data-endpoint="/api/calcular/hora-extra">
+    <label>Salário mensal<input type="number" step="0.01" name="salario_mensal" required></label>
+    <label>Carga horária mensal<input type="number" name="carga_horaria_mensal" value="220" required></label>
+    <label>Quantidade de horas extras<input type="number" step="0.01" name="quantidade_horas" required></label>
+    <label>Percentual de adicional
+      <select name="percentual_adicional">
+        <option value="50">50%</option>
+        <option value="60">60%</option>
+        <option value="100">100%</option>
+      </select>
+    </label>
+    <button class="btn" type="submit">Calcular</button>
+  </form>
+  <%- include('partials/calculator-result', { calculatorType: 'hora-extra' }) %>
+</section>
+<%- include('partials/footer') %>

@@ -1,0 +1,13 @@
+<%- include('partials/header') %>
+
+<section class="login-page">
+  <form class="login-card" method="post" action="/login">
+    <h1>Acesso administrativo</h1>
+    <% if (error) { %><p class="alert"><%= error %></p><% } %>
+    <label>E-mail<input type="email" name="email" required></label>
+    <label>Senha<input type="password" name="password" required></label>
+    <button class="btn" type="submit">Entrar</button>
+  </form>
+</section>
+
+<%- include('partials/footer') %>

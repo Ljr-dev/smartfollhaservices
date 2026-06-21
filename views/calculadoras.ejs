@@ -1,0 +1,8 @@
+<%- include('partials/header') %>
+<section class="page-hero calculators-index">
+  <p class="eyebrow">Calculadoras gratuitas</p>
+  <h1><%= page?.heading || 'Escolha uma calculadora trabalhista' %></h1>
+  <p><%= page?.content || 'Selecione a simulacao que deseja usar para estimar verbas trabalhistas, ferias, 13o salario, hora extra ou FGTS.' %></p>
+  <%- include('partials/calculator-nav') %>
+</section>
+<%- include('partials/footer') %>

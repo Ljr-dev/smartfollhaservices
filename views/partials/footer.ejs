@@ -1,0 +1,19 @@
+  </main>
+  <footer class="site-footer">
+    <div>
+      <strong><%= site.companyName %></strong>
+      <p><%= site.footerText %></p>
+    </div>
+    <div class="footer-links">
+      <a href="/servicos">Serviços</a>
+      <a href="/contato">Contato</a>
+      <a href="/sitemap.xml">Sitemap</a>
+      <% if (site.instagram) { %><a target="_blank" rel="noopener" href="<%= site.instagram %>">Instagram</a><% } %>
+      <% if (site.linkedin) { %><a target="_blank" rel="noopener" href="<%= site.linkedin %>">LinkedIn</a><% } %>
+    </div>
+  </footer>
+  <a class="whatsapp-float" target="_blank" rel="noopener" href="https://wa.me/<%= site.whatsapp %>">WhatsApp</a>
+  <script src="/js/main.js"></script>
+  <script src="/js/calculators.js"></script>
+</body>
+</html>

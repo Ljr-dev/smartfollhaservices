@@ -1,0 +1,24 @@
+<%- include('../partials/admin-header') %>
+<section class="admin-section">
+  <h1>Simulações</h1>
+  <form class="filter-row" method="get">
+    <select name="calculator_type">
+      <option value="">Todas</option>
+      <% ['rescisao', 'ferias', 'decimo-terceiro', 'hora-extra', 'fgts'].forEach(function(option) { %>
+        <option value="<%= option %>" <%= calculatorType === option ? 'selected' : '' %>><%= option %></option>
+      <% }) %>
+    </select>
+    <button type="submit">Filtrar</button>
+  </form>
+  <div class="simulation-list">
+    <% simulations.forEach(function(item) { %>
+      <article class="simulation-card">
+        <h2><%= item.calculator_type %></h2>
+        <p><strong>Contato:</strong> <%= item.user_name || '-' %> | <%= item.user_email || '-' %> | <%= item.user_phone || '-' %></p>
+        <p><strong>Criado em:</strong> <%= item.created_at.toLocaleString('pt-BR') %></p>
+        <pre><%= JSON.stringify({ dados: item.input_data, resultado: item.result_data }, null, 2) %></pre>
+      </article>
+    <% }) %>
+  </div>
+</section>
+<%- include('../partials/admin-footer') %>

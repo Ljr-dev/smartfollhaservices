@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title><%= title %></title>
+  <meta name="description" content="<%= metaDescription %>">
+  <link rel="stylesheet" href="/css/style.css">
+  <% if (schema) { %>
+    <script type="application/ld+json"><%- schema %></script>
+  <% } %>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="/">
+      <span class="brand-mark">SF</span>
+      <span>Smart Folha Services</span>
+    </a>
+    <button class="menu-toggle" type="button" data-menu-toggle>Menu</button>
+    <nav class="site-nav" data-site-nav>
+      <a href="/" class="<%= currentPath === '/' ? 'active' : '' %>">Início</a>
+      <a href="/servicos" class="<%= currentPath === '/servicos' ? 'active' : '' %>">Serviços</a>
+      <a href="/calculadoras" class="<%= currentPath.includes('calculadora') ? 'active' : '' %>">Calculadoras</a>
+      <a href="/contato" class="<%= currentPath === '/contato' ? 'active' : '' %>">Contato</a>
+      <a class="btn small" target="_blank" rel="noopener" href="https://wa.me/<%= site.whatsapp %>">WhatsApp</a>
+    </nav>
+  </header>
+  <main>

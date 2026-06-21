@@ -1,0 +1,25 @@
+<%- include('partials/header') %>
+<section class="calculator-page">
+  <div class="calc-intro">
+    <h1><%= page?.heading || 'Calculadora de rescisão trabalhista' %></h1>
+    <p><%= page?.content || 'Simule valores de saldo de salário, férias, 13º proporcional, aviso prévio e multa de FGTS.' %></p>
+    <%- include('partials/calculator-nav') %>
+  </div>
+  <form class="calculator-form" data-calculator="rescisao" data-endpoint="/api/calcular/rescisao">
+    <label>Nome<input name="nome"></label>
+    <label>Salário bruto<input type="number" step="0.01" name="salario_bruto" required></label>
+    <label>Data de admissão<input type="date" name="data_admissao" required></label>
+    <label>Data de demissão<input type="date" name="data_demissao" required></label>
+    <label>Tipo de rescisão
+      <select name="tipo_rescisao" required>
+        <option>Pedido de demissão</option>
+        <option>Dispensa sem justa causa</option>
+        <option>Justa causa</option>
+        <option>Término de contrato</option>
+      </select>
+    </label>
+    <button class="btn" type="submit">Calcular</button>
+  </form>
+  <%- include('partials/calculator-result', { calculatorType: 'rescisao' }) %>
+</section>
+<%- include('partials/footer') %>

@@ -1,0 +1,31 @@
+<%- include('../partials/admin-header') %>
+<section class="admin-section">
+  <div class="section-actions">
+    <h1>Formulas</h1>
+    <a class="button-link" href="/admin/formulas/nova<%= calculatorType ? '?calculator_type=' + calculatorType : '' %>">Nova formula</a>
+  </div>
+  <form class="filter-row" method="get">
+    <select name="calculator_type">
+      <option value="">Todas</option>
+      <% calculators.forEach(function(option) { %>
+        <option value="<%= option.calculator_type %>" <%= calculatorType === option.calculator_type ? 'selected' : '' %>><%= option.title %></option>
+      <% }) %>
+    </select>
+    <button type="submit">Filtrar</button>
+  </form>
+  <table>
+    <thead><tr><th>Calculadora</th><th>Campo</th><th>Descricao</th><th>Ativa</th><th></th></tr></thead>
+    <tbody>
+      <% formulas.forEach(function(formula) { %>
+        <tr>
+          <td><%= formula.calculator_type %></td>
+          <td><%= formula.label %></td>
+          <td><%= formula.description %></td>
+          <td><%= formula.active ? 'Sim' : 'Nao' %></td>
+          <td><a href="/admin/formulas/<%= formula.id %>/editar">Editar</a></td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</section>
+<%- include('../partials/admin-footer') %>

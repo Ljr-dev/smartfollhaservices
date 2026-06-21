@@ -1,0 +1,13 @@
+<nav class="calculator-switcher" aria-label="Selecionar calculadora">
+  <% if (typeof calculators !== 'undefined' && calculators.length) { %>
+    <% calculators.forEach(function(item) { %>
+      <a href="/calculadora-<%= item.slug %>" class="<%= currentPath === '/calculadora-' + item.slug ? 'active' : '' %>"><%= item.title %></a>
+    <% }) %>
+  <% } else { %>
+    <a href="/calculadora-rescisao" class="<%= currentPath === '/calculadora-rescisao' ? 'active' : '' %>">Rescisao</a>
+    <a href="/calculadora-ferias" class="<%= currentPath === '/calculadora-ferias' ? 'active' : '' %>">Ferias</a>
+    <a href="/calculadora-decimo-terceiro" class="<%= currentPath === '/calculadora-decimo-terceiro' ? 'active' : '' %>">13o salario</a>
+    <a href="/calculadora-hora-extra" class="<%= currentPath === '/calculadora-hora-extra' ? 'active' : '' %>">Hora extra</a>
+    <a href="/calculadora-fgts" class="<%= currentPath === '/calculadora-fgts' ? 'active' : '' %>">FGTS</a>
+  <% } %>
+</nav>

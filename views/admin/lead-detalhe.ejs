@@ -1,0 +1,23 @@
+<%- include('../partials/admin-header') %>
+<section class="admin-section">
+  <h1><%= lead.name %></h1>
+  <div class="detail-grid">
+    <p><strong>E-mail:</strong> <%= lead.email %></p>
+    <p><strong>Telefone:</strong> <%= lead.phone %></p>
+    <p><strong>Empresa:</strong> <%= lead.company || '-' %></p>
+    <p><strong>Interesse:</strong> <%= lead.service_interest || '-' %></p>
+    <p><strong>Origem:</strong> <%= lead.source_page || '-' %></p>
+    <p><strong>Criado em:</strong> <%= lead.created_at.toLocaleString('pt-BR') %></p>
+  </div>
+  <p class="message-box"><%= lead.message %></p>
+  <form class="inline-form" method="post" action="/admin/leads/<%= lead.id %>/status">
+    <select name="status">
+      <% ['Novo', 'Em atendimento', 'Convertido', 'Perdido'].forEach(function(option) { %>
+        <option value="<%= option %>" <%= lead.status === option ? 'selected' : '' %>><%= option %></option>
+      <% }) %>
+    </select>
+    <button type="submit">Alterar status</button>
+  </form>
+  <a class="button-link" target="_blank" rel="noopener" href="https://wa.me/55<%= String(lead.phone || '').replace(/\D/g, '') %>?text=<%= encodeURIComponent('Olá, ' + lead.name + '. Recebemos seu contato pela Smart Folha Services e podemos conversar sobre ' + (lead.service_interest || 'sua solicitação') + '.') %>">Abrir WhatsApp</a>
+</section>
+<%- include('../partials/admin-footer') %>

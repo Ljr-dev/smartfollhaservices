@@ -1,0 +1,17 @@
+<section class="result-panel" data-result-panel hidden>
+  <h2>Resultado estimado</h2>
+  <div class="result-list" data-result-list></div>
+  <p class="notice">Este cálculo é uma estimativa e não substitui análise profissional de Departamento Pessoal.</p>
+  <div class="result-actions">
+    <a class="btn secondary" data-whatsapp-result target="_blank" rel="noopener" href="#">Enviar resultado para WhatsApp</a>
+  </div>
+  <form class="save-simulation" data-save-simulation>
+    <h3>Salvar simulação</h3>
+    <input type="hidden" name="calculator_type" value="<%= calculatorType %>">
+    <label>Nome<input name="user_name"></label>
+    <label>E-mail<input type="email" name="user_email"></label>
+    <label>Telefone<input name="user_phone"></label>
+    <button class="btn" type="submit">Salvar simulação</button>
+    <p class="save-message" data-save-message></p>
+  </form>
+</section>

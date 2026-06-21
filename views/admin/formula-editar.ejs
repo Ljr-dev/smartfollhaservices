@@ -1,0 +1,30 @@
+<%- include('../partials/admin-header') %>
+<section class="admin-section narrow">
+  <h1><%= isNew ? 'Nova formula' : 'Editar formula' %></h1>
+  <form method="post" action="<%= isNew ? '/admin/formulas/nova' : '/admin/formulas/' + formula.id + '/editar' %>">
+    <label>Calculadora
+      <% if (isNew) { %>
+        <select name="calculator_type" required>
+          <% calculators.forEach(function(calculator) { %>
+            <option value="<%= calculator.calculator_type %>" <%= formula.calculator_type === calculator.calculator_type ? 'selected' : '' %>><%= calculator.title %></option>
+          <% }) %>
+        </select>
+      <% } else { %>
+        <input name="calculator_type" value="<%= formula.calculator_type %>" readonly>
+      <% } %>
+    </label>
+    <label>Nome interno do resultado<input name="field_name" value="<%= formula.field_name %>" placeholder="total_estimado" required></label>
+    <label>Rotulo<input name="label" value="<%= formula.label %>" required></label>
+    <label>Descricao<textarea name="description" required><%= formula.description %></textarea></label>
+    <label>Expressao da formula<input name="formula_expression" value="<%= formula.formula_expression %>" required></label>
+    <label>Observacao legal<textarea name="legal_observation"><%= formula.legal_observation %></textarea></label>
+    <label>Ativa
+      <select name="active">
+        <option value="1" <%= formula.active ? 'selected' : '' %>>Sim</option>
+        <option value="0" <%= !formula.active ? 'selected' : '' %>>Nao</option>
+      </select>
+    </label>
+    <button type="submit">Salvar</button>
+  </form>
+</section>
+<%- include('../partials/admin-footer') %>
